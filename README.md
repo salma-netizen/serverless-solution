@@ -213,12 +213,14 @@ Task 4: Creating a Lambda function and setting up triggers
 In this task, you create a Lambda function that reads messages from the SQS queue and writes an order record to the DynamoDB table
 
 Step 4.1: Creating a Lambda function for the Lambda-SQS-DynamoDB role
-1-In the AWS Management Console search box, enter Lambda and from the list, choose Lambda.
-2-Choose Create function and configure the following settings:
+   1-In the AWS Management Console search box, enter Lambda and from the list, choose Lambda.
+  2-Choose Create function and configure the following settings:
+  
      Function option: Author from scratch
      Function name: POC-Lambda-1
      Runtime: Python 3.9
      Change default execution role: Use an existing role
      Existing role: Lambda-SQS-DynamoDB
+     
 3-Choose Create function.
 
