@@ -53,7 +53,7 @@ The Create policy page appears. You can create and edit a policy in the visual e
 6-In the JSON tab, paste the following code:
 
 ```bash
-  #!/bin/bash
+
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -68,3 +68,142 @@ The Create policy page appears. You can create and edit a policy in the visual e
         }
     ]
 }
+
+
+-Choose Next: Tags and then choose Next: Review.
+
+For the policy name, enter Lambda-Write-DynamoDB.
+
+-Choose Create policy.
+
+-After you create the Lambda-Write-DynamoDB policy, repeat the previous steps to create the following policies:
+
+-A policy for Amazon SNS to get, list, and publish topics that are received by Lambda:
+
+-Name: Lambda-SNS-Publish
+-JSON:
+
+```bash
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "sns:Publish",
+                "sns:GetTopicAttributes",
+                    "sns:ListTopics"
+            ],
+                "Resource": "*"
+        }
+    ]
+ }
+
+
+ ***A policy for Lambda to get records from DynamoDB Streams:
+
+Name: Lambda-DynamoDBStreams-Read
+JSON:
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "sqs:DeleteMessage",
+                "sqs:ReceiveMessage",
+                "sqs:GetQueueAttributes",
+                "sqs:ChangeMessageVisibility"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+
+
+Step 1.2: Creating IAM roles and attaching policies to the roles
+Because AWS follows the principle of least privilege, we recommend that you provide role-based access to only the AWS resources that are required to perform a task. In this step, you create IAM roles and attach policies to the roles.
+
+1-In the navigation pane of the IAM dashboard, choose Roles.
+
+2-Choose Create role and in the Select trusted entity page, configure the following settings:
+       .Trusted entity type: AWS service
+       .Common use cases: Lambda
+3-Choose Next.
+
+4-On the Add permissions page, select Lambda-Write-DynamoDB and Lambda-Read-SQS.
+
+5-Choose Next
+
+6-For Role name, enter Lambda-SQS-DynamoDB.
+
+7-Choose Create role.
+
+8-Follow the previous steps to create two more IAM roles:
+
+      ---An IAM role for AWS Lambda: This role grants permissions to obtain records from the DynamoDB streams and send the records to Amazon SNS. Use the following information to create the role.
+                -IAM role name: Lambda-DynamoDBStreams-SNS
+                -Trusted entity type: AWS service
+                -Common use cases: Lambda
+                -Attach policies: Lambda-SNS-Publish and Lambda-DynamoDBStreams-Read
+      ---An IAM role for Amazon API Gateway: This role grants permissions to send data to the SQS queue and push logs to Amazon CloudWatch for troubleshooting. Use the following information to create the role.
+                -IAM role name: APIGateway-SQS
+                -Trusted entity type: AWS service
+                -Common use cases: API Gateway
+                -Attach policies: AmazonAPIGatewayPushToCloudWatchLogs
+
+---
+Task 2: Creating a DynamoDB table
+In this task, you create a DynamoDB table that ingests data that’s passed on through API Gateway.
+
+     1-In the search box of the AWS Management Console, enter DynamoDB.
+
+     2-From the list, choose the DynamoDB service.
+
+     3-On the Get started card, choose Create table and configure the following settings:
+            -Table: orders
+            -Partition key: orderID
+            -Data type: Keep String
+Keep the remaining settings at their default values, and choose Create table.
+
+---
+Task 3: Creating an SQS queue
+In this task, you create an SQS queue. In the architecture for this exercise, the Amazon SQS receives data records from API Gateway, stores them, and then sends them to a database.
+
+    1-In the AWS Management Console search box, enter SQS and from the list, choose Simple Queue Service.
+
+    2-On the Get started card, choose Create queue.
+
+     The Create queue page appears.
+
+    3-Configure the following settings:
+          -Name: POC-Queue
+          -Access Policy: Basic
+          -Define who can send messages to the queue:
+                  -Select Only the specified AWS accounts, IAM users and roles
+                  -In the box for this option, paste the Amazon Resource Name (ARN) for the APIGateway-SQS IAM role
+                  -Note: For example, your IAM role might look similar to the following: arn:aws:iam::<account ID>:role/APIGateway-SQS.
+         -Define who can receive messages from the queue:
+                      -Select Only the specified AWS accounts, IAM users and roles.
+                      -In the box for this option, paste the ARN for the Lambda-SQS-DynamoDB IAM role.
+                       -Note: For example, your IAM role might look similar to the following: arn:aws:iam::<account_ID>:role/Lambda-SQS-DynamoDB
+   4-Choose Create queue
+
+---
+Task 4: Creating a Lambda function and setting up triggers
+In this task, you create a Lambda function that reads messages from the SQS queue and writes an order record to the DynamoDB table
+
+Step 4.1: Creating a Lambda function for the Lambda-SQS-DynamoDB role
+1-In the AWS Management Console search box, enter Lambda and from the list, choose Lambda.
+2-Choose Create function and configure the following settings:
+     Function option: Author from scratch
+     Function name: POC-Lambda-1
+     Runtime: Python 3.9
+     Change default execution role: Use an existing role
+     Existing role: Lambda-SQS-DynamoDB
+3-Choose Create function.
+
