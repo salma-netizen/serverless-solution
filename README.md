@@ -32,26 +32,28 @@ The instructions might prompt you to enter your account ID. Your account ID is a
 
 ---
 
-ask 1. Setup: Creating IAM policies and roles
+Task 1. Setup: Creating IAM policies and roles
 When you first create an account on AWS, you become a root user, or an account owner. We don’t recommend that you use the account root user for daily operations and tasks. Instead, you should use an IAM user or IAM roles to access specific services and features. IAM policies, users, and roles are offered at no additional charge.
 
 In this task, you create custom IAM policies and roles to grant limited permissions to specific AWS services.
 
 Step 1.1: Creating custom IAM policies
-Sign in to the AWS Management Console.
+1-Sign in to the AWS Management Console.
 
-In the search box, enter IAM.
+2-In the search box, enter IAM.
 
-From the results list, choose IAM.
+3-From the results list, choose IAM.
 
-In the navigation pane, choose Policies.
+4-In the navigation pane, choose Policies.
 
-Choose Create policy.
+5-Choose Create policy.
 
 The Create policy page appears. You can create and edit a policy in the visual editor or use JSON. In this exercise, we provide JSON scripts to create policies. In total, you must create four policies.
 
-In the JSON tab, paste the following code:
+6-In the JSON tab, paste the following code:
 
+```bash
+  #!/bin/bash
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -66,18 +68,3 @@ In the JSON tab, paste the following code:
         }
     ]
 }
-
-This JSON script grants permissions to put items into the DynamoDB table. The asterisk (*) indicates that the specified actions can apply to all available resources.
-
-Choose Next: Tags and then choose Next: Review.
-
-For the policy name, enter Lambda-Write-DynamoDB.
-
-Choose Create policy.
-
-After you create the Lambda-Write-DynamoDB policy, repeat the previous steps to create the following policies:
-
-A policy for Amazon SNS to get, list, and publish topics that are received by Lambda:
-
-Name: Lambda-SNS-Publish
-JSON:
