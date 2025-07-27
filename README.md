@@ -181,23 +181,23 @@ Keep the remaining settings at their default values, and choose Create table.
 Task 3: Creating an SQS queue
 In this task, you create an SQS queue. In the architecture for this exercise, the Amazon SQS receives data records from API Gateway, stores them, and then sends them to a database.
 
-    1-In the AWS Management Console search box, enter SQS and from the list, choose Simple Queue Service.
+ 1-In the AWS Management Console search box, enter SQS and from the list, choose Simple Queue Service.
 
-    2-On the Get started card, choose Create queue.
+ 2-On the Get started card, choose Create queue.
 
-     The Create queue page appears.
+    The Create queue page appears.
 
-    3-Configure the following settings:
-          -Name: POC-Queue
-          -Access Policy: Basic
-          -Define who can send messages to the queue:
-                  -Select Only the specified AWS accounts, IAM users and roles
-                  -In the box for this option, paste the Amazon Resource Name (ARN) for the APIGateway-SQS IAM role
-                  -Note: For example, your IAM role might look similar to the following: arn:aws:iam::<account ID>:role/APIGateway-SQS.
-         -Define who can receive messages from the queue:
-                      -Select Only the specified AWS accounts, IAM users and roles.
-                      -In the box for this option, paste the ARN for the Lambda-SQS-DynamoDB IAM role.
-                       -Note: For example, your IAM role might look similar to the following: arn:aws:iam::<account_ID>:role/Lambda-SQS-DynamoDB
+ 3-Configure the following settings:
+    Name: POC-Queue
+    Access Policy: Basic
+    Define who can send messages to the queue:
+     Select Only the specified AWS accounts, IAM users and roles
+     In the box for this option, paste the Amazon Resource Name (ARN) for the APIGateway-SQS IAM role
+     Note: For example, your IAM role might look similar to the following: arn:aws:iam::<account ID>:role/APIGateway-SQS.
+    Define who can receive messages from the queue:
+     Select Only the specified AWS accounts, IAM users and roles.
+     In the box for this option, paste the ARN for the Lambda-SQS-DynamoDB IAM role.
+     Note: For example, your IAM role might look similar to the following: arn:aws:iam::<account_ID>:role/Lambda-SQS-DynamoDB
    4-Choose Create queue
 
 
