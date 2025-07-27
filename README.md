@@ -152,12 +152,12 @@ Because AWS follows the principle of least privilege, we recommend that you prov
 
 8-Follow the previous steps to create two more IAM roles:
 
-      -An IAM role for AWS Lambda: This role grants permissions to obtain records from the DynamoDB streams and send the records to Amazon SNS. Use the following information to create the role.
+     1- An IAM role for AWS Lambda: This role grants permissions to obtain records from the DynamoDB streams and send the records to Amazon SNS. Use the following information to create the role.
                 -IAM role name: Lambda-DynamoDBStreams-SNS
                 -Trusted entity type: AWS service
                 -Common use cases: Lambda
                 -Attach policies: Lambda-SNS-Publish and Lambda-DynamoDBStreams-Read
-      -An IAM role for Amazon API Gateway: This role grants permissions to send data to the SQS queue and push logs to Amazon CloudWatch for troubleshooting. Use the following information to create the role.
+      2-An IAM role for Amazon API Gateway: This role grants permissions to send data to the SQS queue and push logs to Amazon CloudWatch for troubleshooting. Use the following information to create the role.
                 -IAM role name: APIGateway-SQS
                 -Trusted entity type: AWS service
                 -Common use cases: API Gateway
