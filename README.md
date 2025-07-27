@@ -103,11 +103,14 @@ For the policy name, enter Lambda-Write-DynamoDB.
  }
 
 
+```
+
  ***A policy for Lambda to get records from DynamoDB Streams:
 
 Name: Lambda-DynamoDBStreams-Read
 JSON:
 
+```bash
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -124,6 +127,8 @@ JSON:
         }
     ]
 }
+
+```
 
 
 
