@@ -7,7 +7,6 @@ Suppose you have a customer that needs a serverless web backend hosted on AWS. T
 
 
 ---
-
 **Default Architecture**
 
 ![project structure](/project%20structure.png)
