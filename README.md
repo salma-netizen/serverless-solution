@@ -152,18 +152,18 @@ Because AWS follows the principle of least privilege, we recommend that you prov
 
 8-Follow the previous steps to create two more IAM roles:
 
-      ---An IAM role for AWS Lambda: This role grants permissions to obtain records from the DynamoDB streams and send the records to Amazon SNS. Use the following information to create the role.
+      -An IAM role for AWS Lambda: This role grants permissions to obtain records from the DynamoDB streams and send the records to Amazon SNS. Use the following information to create the role.
                 -IAM role name: Lambda-DynamoDBStreams-SNS
                 -Trusted entity type: AWS service
                 -Common use cases: Lambda
                 -Attach policies: Lambda-SNS-Publish and Lambda-DynamoDBStreams-Read
-      ---An IAM role for Amazon API Gateway: This role grants permissions to send data to the SQS queue and push logs to Amazon CloudWatch for troubleshooting. Use the following information to create the role.
+      -An IAM role for Amazon API Gateway: This role grants permissions to send data to the SQS queue and push logs to Amazon CloudWatch for troubleshooting. Use the following information to create the role.
                 -IAM role name: APIGateway-SQS
                 -Trusted entity type: AWS service
                 -Common use cases: API Gateway
                 -Attach policies: AmazonAPIGatewayPushToCloudWatchLogs
 
----
+
 Task 2: Creating a DynamoDB table
 In this task, you create a DynamoDB table that ingests data that’s passed on through API Gateway.
 
@@ -177,7 +177,7 @@ In this task, you create a DynamoDB table that ingests data that’s passed on t
             -Data type: Keep String
 Keep the remaining settings at their default values, and choose Create table.
 
----
+
 Task 3: Creating an SQS queue
 In this task, you create an SQS queue. In the architecture for this exercise, the Amazon SQS receives data records from API Gateway, stores them, and then sends them to a database.
 
@@ -200,7 +200,7 @@ In this task, you create an SQS queue. In the architecture for this exercise, th
                        -Note: For example, your IAM role might look similar to the following: arn:aws:iam::<account_ID>:role/Lambda-SQS-DynamoDB
    4-Choose Create queue
 
----
+
 Task 4: Creating a Lambda function and setting up triggers
 In this task, you create a Lambda function that reads messages from the SQS queue and writes an order record to the DynamoDB table
 
