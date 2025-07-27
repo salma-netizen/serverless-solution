@@ -130,7 +130,7 @@ JSON:
 
 ```
 
-
+---
 
 Step 1.2: Creating IAM roles and attaching policies to the roles
 Because AWS follows the principle of least privilege, we recommend that you provide role-based access to only the AWS resources that are required to perform a task. In this step, you create IAM roles and attach policies to the roles.
