@@ -10,6 +10,6 @@ The following architectural diagram shows the flow for the serverless solution t
 
 ---
 
-**Default Architecture**
+**Default Architecture*
 
-![Architecting Solutions] (/Architecting%20Solutions.png)
+![project structure](/Architecting%20Solutions.png)
