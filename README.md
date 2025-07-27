@@ -7,4 +7,9 @@ Suppose you have a customer that needs a serverless web backend hosted on AWS. T
 
 The following architectural diagram shows the flow for the serverless solution that you will build.
 
-![Architecting  Solutions] (Architecting%20Solutions.png)
+
+---
+
+**Default Architecture**
+
+![Architecting Solutions] (/Architecting%20Solutions.png)
