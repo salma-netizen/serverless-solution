@@ -163,8 +163,9 @@ Because AWS follows the principle of least privilege, we recommend that you prov
                 -Common use cases: API Gateway
                 -Attach policies: AmazonAPIGatewayPushToCloudWatchLogs
 
+---
 
-Task 2: Creating a DynamoDB table
+###Task 2: Creating a DynamoDB table
 In this task, you create a DynamoDB table that ingests data that’s passed on through API Gateway.
 
      1-In the search box of the AWS Management Console, enter DynamoDB.
@@ -176,6 +177,9 @@ In this task, you create a DynamoDB table that ingests data that’s passed on t
             -Partition key: orderID
             -Data type: Keep String
 Keep the remaining settings at their default values, and choose Create table.
+
+---
+
 
 
 Task 3: Creating an SQS queue
