@@ -224,3 +224,6 @@ Step 4.1: Creating a Lambda function for the Lambda-SQS-DynamoDB role
      
 3-Choose Create function.
 
+the project in details on 
+
+https://aws-tc-largeobjects.s3.us-west-2.amazonaws.com/DEV-AWS-MO-Architecting/exercise-1-serverless.html
